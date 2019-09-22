@@ -527,7 +527,7 @@ void cudaCheckError(cudaError_t cudaStatus, const char* err)
 int main(int argc, const char * const argv[])
 {
 	if (argc != 4){
-		printf("Incorrect arguments..\n./2Cuda [ReadLength] [ReadandRefFile] [#reads]\n");
+		printf("Incorrect arguments..\n./Snake-on-GPU [ReadLength] [ReadandRefFile] [#reads]\n");
 		exit(-1);
 	}
 
