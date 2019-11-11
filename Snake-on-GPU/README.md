@@ -2,13 +2,13 @@
 
 ```
 make
-./Snake-on-GPU 100 ../Datasets/ERR240727_1_E2_30million.txt 30000 
+./Snake-on-GPU 100 ../Datasets/ERR240727_1_E2_30000Pairs.txt 30000 
 ./Snake-on-GPU [ReadLength] [ReadandRefFile] [#reads]
 ```
 
 ## Output [DebugMode OFF]:
 ```
-./Snake-on-GPU `head -n 1 ../Datasets/ERR240727_1_E2_30million.txt | awk '{print length($1)}'`  ../Datasets/ERR240727_1_E2_30million.txt  `wc -l  ../Datasets/ERR240727_1_E2_30million.txt|awk '{print $1}'`
+./Snake-on-GPU `head -n 1 ../Datasets/ERR240727_1_E2_30000Pairs.txt | awk '{print length($1)}'`  ../Datasets/ERR240727_1_E2_30000Pairs.txt  `wc -l  ../Datasets/ERR240727_1_E2_30000Pairs.txt | awk '{print $1}'`
 GPU Device 0: "TITAN V" with compute capability 7.0
 
 E: 	 0 	 Snake-on-GPU: 	 0.1071 	 Accepted: 	          8 	 Rejected: 	       2992
