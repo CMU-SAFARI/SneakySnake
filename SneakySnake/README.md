@@ -2,13 +2,13 @@
 
 ```
 make
-./main 0 100 100 100 ../Datasets/ERR240727_1_E2_30million.txt 30000 
+./main 0 100 100 100 ../Datasets/ERR240727_1_E2_30000Pairs.txt 30000 
 ./main [DebugMode] [KmerSize] [ReadLength] [IterationNo] [ReadRefFile] [# of reads]
 ```
 
 ## Output [DebugMode OFF]:
 ```
-./main 0 100 100 100 ../Datasets/ERR240727_1_E2_30million.txt 30000 
+./main 0 100 100 100 ../Datasets/ERR240727_1_E2_30000Pairs.txt 30000 
 Edit Distance 	 CPU Time(seconds) 	 Alignment_Needed 	 Not_Needed 
 Threshold 
  0 		 0.0238 	         11 	 29989
@@ -26,7 +26,7 @@ Threshold
 
 ## Output [DebugMode ON]:
 ```
-./main 1 100 100 100 ../Datasets/ERR240727_1_E2_30million.txt 30000 
+./main 1 100 100 100 ../Datasets/ERR240727_1_E2_30000Pairs.txt 30000 
 
  0 - _ 0       _10       _20       _30       _40       _50       _60       _70       _80       _90       
  0 - 1100000101000000000000000100000000001010000000001000010010000000000000000000000000000010100000000001
