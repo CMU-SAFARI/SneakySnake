@@ -2,10 +2,10 @@
 The first and the only edit distance estimation algorithm that works on all modern high-performance computing architectures. 
 It works efficiently and fast on CPU, FPGA, and GPU architectures and that greatly (by more than two orders of magnitude) expedites edit distance calculation. This work is led by Alser et al. (2019).
 
-# The key idea 
+## The key idea 
 The key idea of SneakySnake is to estimate the edit distance quickly by reducing the approximate string matching (ASM) problem to the single net routing (SNR) problem in VLSI chip layout. In the SNR problem, we are interested in only finding the path that connects two terminals with the least routing cost on a special grid layout that contains obstacles. The SneakySnake algorithm quickly and optimally solves the SNR problem and uses the found optimal path to decide whether performing an exact edit distance calculation is necessary, instead of performing quadratic-time dynamic programming computation. Reducing the ASM problem into SNR also makes SneakySnake efficient to implement for all modern high-performance computing architectures (CPUs, GPUs, and FPGAs).
 
-# Results 
+## Results 
 SneakySnake provides up to four orders of magnitude less sequence pairs with underestimated edit distance estimation than the state-of-the-art edit distance estimation algorithms, Shouji, GateKeeper, and SHD. SneakySnake accelerates the state-of-the-art exact edit distance implementations, Edlib and Parasail, by up to 37.6×and 43.9× (>12× on average), respectively, without requiring hardware acceleration and by up to 413× and 689× (>400× on average), respectively, using hardware acceleration. Unlike most edit distance acceleration studies, SneakySnake does not limit the scoring function used in the calculation nor sacrifice the backtracking step, as it does not modify or replace the edit distance calculation. 
 
 ## Directory Structure:
