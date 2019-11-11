@@ -1,7 +1,6 @@
 read-reference pair sets are generated using mrFAST by mapping the following datasets to the human reference genome (GRCh37):
 1. https://www.ebi.ac.uk/ena/data/view/ERR240727
-2. https://www.ebi.ac.uk/ena/data/view/SRR826460
-3. https://www.ebi.ac.uk/ena/data/view/SRR826471
+2. https://www.ebi.ac.uk/ena/data/view/SRR826471
 
 To generate these datasets, you need to extract the read-reference pairs using mrFAST by doing the following two steps:
 
@@ -18,7 +17,7 @@ printf("\t%s\n", _tmpSeq);
 
 2. Use the following command to capture the read-reference pairs:
 ```
-./mrfast-2.6.1.0/mrfast --search ../human_g1k_v37.fasta --seq ../ERR240727_1.filt.fastq -e 2 | awk -F'\t' '{ if (substr($2,1,1) ~ /^[A,C,G,T]/ ) print $0}' |head -n 30000000 > ../../ERR240727_1_E1_50million_new2.txt
+./mrfast-2.6.1.0/mrfast --search ../human_g1k_v37.fasta --seq ../ERR240727_1.filt.fastq -e 2 | awk -F'\t' '{ if (substr($2,1,1) ~ /^[A,C,G,T]/ ) print $0}' | head -n 30000000 > ../../ERR240727_1_E2_30000Pairs.txt
 ```
 
 You can download the human reference genome from here: 
@@ -29,4 +28,4 @@ Or a more recent assembly from here:
 ```
 https://www.ncbi.nlm.nih.gov/assembly?term=GRCh38&cmd=DetailsSearch
 ```
-Above, we only provide sample of the 4 read-reference sets generated from Illumina 100 bp reads. 
+Above, we only provide the first 30,000 read-reference pairs of each dataset we used in this work, due to a maximum file size restriction of 25 MB. Please feel free to contact us to get the complete datasets. 
