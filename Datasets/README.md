@@ -17,7 +17,7 @@ printf("\t%s\n", _tmpSeq);
 
 2. Use the following command to capture the read-reference pairs:
 ```
-./mrfast-2.6.1.0/mrfast --search ../human_g1k_v37.fasta --seq ../ERR240727_1.filt.fastq -e 2 | awk -F'\t' '{ if (substr($2,1,1) ~ /^[A,C,G,T]/ ) print $0}' | head -n 30000000 > ../../ERR240727_1_E2_30000Pairs.txt
+./mrfast-2.6.1.0/mrfast --search ../human_g1k_v37.fasta --seq ../ERR240727_1.fastq -e 2 | awk -F'\t' '{ if (substr($2,1,1) ~ /^[A,C,G,T]/ ) print $0}' | head -n 30000 > ERR240727_1_E2_30000Pairs.txt
 ```
 
 You can download the human reference genome from here: 
