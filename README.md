@@ -24,4 +24,4 @@ SneakySnake-master
 5. In the "SneakySnake" directory, you will find the source code of the CPU implementation of the SneakySnake algorithm. Follow the instructions provided in the README.md inside the directory to compile and execute the program. We also provide an example of how the output of SneakySnake looks like using both verbose mode and silent mode.
 
 ## Contact
-For any issue with the code or bug, please contact mohammed dot alser at inf dot ethz dot ch
+For any issue with the code or suggestion for improvement, please contact mohammed dot alser at inf dot ethz dot ch
