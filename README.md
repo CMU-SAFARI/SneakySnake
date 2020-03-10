@@ -1,4 +1,4 @@
-# SneakySnake: A Fast and Accurate Universal Genome Pre-Alignment Filter
+# SneakySnake: A Fast and Accurate Universal Genome Pre-Alignment Filter for CPUs, GPUs, and FPGAs
 The first and the only pre-alignment filtering algorithm that works on all modern high-performance computing architectures.  It works efficiently and fast on CPU, FPGA, and GPU architectures and that greatly (by more than two orders of magnitude) expedites sequence alignment calculation. Described by Alser et al. (preliminary version at https://arxiv.org/abs/1910.09020).
 
 ## The key idea 
