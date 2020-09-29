@@ -53,7 +53,6 @@
 /* to compile type the following 
 sudo ldconfig -v
 gcc -g -O3 -Wall -o main *.c -lz -lm -pthread
-gcc -g -O3 -Wall -o main *.c -lz -lm -pthread 
 time ./main 0 100 100 100 /home/alser/Desktop/Filters_29_11_2016/ERR240727_1_E2_30million.txt 30000000 1 10 0
 OR: use the following to check the memory leaks
 valgrind --leak-check=yes --show-leak-kinds=all ./main
