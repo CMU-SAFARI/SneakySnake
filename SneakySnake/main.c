@@ -42,137 +42,195 @@
 #include <stdlib.h>
 #include <immintrin.h>
 #include "SneakySnake.h"
+#include <string.h>
+#include <assert.h>
+#include <pthread.h>
+#include <sys/sysinfo.h>
+#include <sys/time.h>
+
+
 
 /* to compile type the following 
 sudo ldconfig -v
-gcc -g -O3 -Wall -o main *.c -lz -lm 
-./main 0 100 100 100 ../Datasets/ERR240727_1_E2_30million.txt 3000
+gcc -g -O3 -Wall -o main *.c -lz -lm -pthread
+gcc -g -O3 -Wall -o main *.c -lz -lm -pthread 
+time ./main 0 100 100 100 /home/alser/Desktop/Filters_29_11_2016/ERR240727_1_E2_30million.txt 30000000 1 10 0
 OR: use the following to check the memory leaks
 valgrind --leak-check=yes --show-leak-kinds=all ./main
 */
 
-void cudaCheckError(cudaError_t cudaStatus, char* err)
+
+void kt_for(int n_threads, void (*func)(void*,long,int), void *data, long n);
+//void kt_for(int n_threads, int n_items, void (*func)(void*,int,int), void *data);
+
+//void kt_pipeline(int n_threads, void *(*func)(void*, int, void*), void *shared_data, int n_steps);
+
+typedef struct {
+	FILE *fp;
+	int max_lines, buf_size, n_threads;
+	int DebugMode,KmerSize, ReadLength,IterationNo, TotalAccepted, EditThreshold;
+	char *buf;
+} pipeline_t;
+
+typedef struct {
+	int n_lines;
+	int DebugMode,KmerSize, ReadLength, IterationNo, EditThreshold;
+	char **lines;
+	int *Accepted;
+} step_t;
+
+
+static void worker_for(void *_data, long i, int tid) // kt_for() callback
 {
-    if(cudaStatus != cudaSuccess)
-    {
-        fprintf(stderr, err);
-        cudaDeviceReset();
-       exit(EXIT_FAILURE);
-    }
+	step_t *step = (step_t*)_data;
+	char *s = step->lines[i];
+	int ReadLength =step->ReadLength;
+	int DebugMode =step->DebugMode;
+	int KmerSize =step->KmerSize; 
+	int IterationNo =step->IterationNo;
+	int EditThreshold =step->EditThreshold;
+	
+	char RefSeq[ReadLength];
+	char ReadSeq[ReadLength];
+	
+	int n=0;
+	int banded=1;
+	
+	//printf("%s\n",step->lines[i]);
+	
+	strncpy(ReadSeq, s, ReadLength);
+	strncpy(RefSeq, s+ReadLength+1, ReadLength);
+	
+	/*for (n = 0; n < ReadLength; n++) {
+		printf("%c",ReadSeq[n]);
+	}
+	printf("\t");
+	for (n = 0; n < ReadLength; n++) {
+		printf("%c",RefSeq[n]);
+	}
+	printf("\n");
+		*/
+		
+
+	
+	step->Accepted[i] = SneakySnake(ReadLength, RefSeq, ReadSeq, EditThreshold, KmerSize, DebugMode, IterationNo);
+	//printf("i: %d TID:%d Accepted: %d\n",i, tid, step->Accepted[i]);
+
 }
 
 int main(int argc, const char * const argv[]) {
-	//(void)argc;
-	//(void)argv;
-
-	/*int DebugMode=0;
-	int KmerSize=100;
-	int ReadLength = 100; 
-	int IterationNo =100;
-	*/
-	if (argc!=7){
-		printf("missing argument..\n./main [DebugMode] [KmerSize] [ReadLength] [IterationNo] [ReadRefFile] [# of reads]\n");
+	
+	if (argc!=9){
+		fprintf(stderr, "missing argument..\n./main [DebugMode] [KmerSize] [ReadLength] [IterationNo] [ReadRefFile] [# of reads] [# of threads] [EditThreshold]\n");
 		exit(-1);
 	}
-	int DebugMode=atoi(argv[1]);
-	int KmerSize=atoi(argv[2]);
-	int ReadLength = atoi(argv[3]);
-	int IterationNo = atoi(argv[4]); 
-
-	int n;
+	
 	FILE * fp;
 	char * line = NULL;
 	size_t len = 0;
 	ssize_t read;
-	char *p;
-	int j,i;
+	int i;
 	int loopPar;
-	char RefSeq[ReadLength] ;
-	char ReadSeq[ReadLength];
-	int EditThreshold;
-	int Accepted1;
-	int FP1;
-	int FN1;
-	clock_t begin1;
-	clock_t end1;
-	double time1;
-	double time_spent1;
-        printf("Edit Distance \t CPU Time(seconds) \t Alignment_Needed \t Not_Needed \n");
-	printf("Threshold \n");
-	for (loopPar =0; loopPar<=10;loopPar++) {
-		EditThreshold=(loopPar*ReadLength)/100;
-		//printf("\n<-------------------Levenshtein Distance = %d------------------->\n", EditThreshold);
+	int Accepted=0;
+	long start, end;
+    struct timeval timecheck;
 
-		FP1=0;
-		FN1=0;
-		time1= 0;
-		//fp = fopen("/home/alser-xilinx/Desktop/Filters_29_11_2016/ReadRef_39999914_pairs_ERR240727_1_with_NW_2017.fastq", "r");
-
-		fp = fopen(argv[5], "r");
-		if (!fp){
-			printf("Sorry, the file does not exist or you do not have access permission\n");
-		}
-		else {
-			for (i = 1; i <= atoi(argv[6]); i++) {
-				read = getline(&line, &len, fp);
-				j=1;
-				for (p = strtok(line, "\t"); p != NULL; p = strtok(NULL, "\t")) {
-					if (j==1){
-						for (n = 0; n < ReadLength; n++) {
-							ReadSeq[n]= p[n];
-							//printf("%c",ReadSeq[n]);
-						}
-						//printf(" ");
-					}
-					else if (j==2){
-						for (n = 0; n < ReadLength; n++) {
-							RefSeq[n]= p[n];
-							//printf("%c",RefSeq[n]);
-						}
-						//printf("\n");
-					}
-					j=j+1;
-				}		  
-
-				begin1 = clock();
-				Accepted1 = SneakySnake(ReadLength, RefSeq, ReadSeq, EditThreshold, KmerSize, DebugMode, IterationNo);
-				/*if (Accepted1==1){
-					EdlibAlignResult resultEdlib1 = edlibAlign(RefSeq, ReadLength, ReadSeq, ReadLength, edlibNewAlignConfig(EditThreshold, EDLIB_MODE_NW, EDLIB_TASK_PATH, NULL, 0)); // with alignment
-					edlibFreeAlignResult(resultEdlib1);
-				}*/
-				end1 = clock();
-
-				
-				
-				/////////////////////////////////////////////////////////////////////////////////////////////////
-				/////////////////////////////////////////////////////////////////////////////////////////////////
-				/////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-				//NWAccepted = Accepted8;
-
-				if (Accepted1==0  ){//&& NWAccepted==1
-					FN1++;
-					//SneakySnake(ReadLength, RefSeq, ReadSeq, EditThreshold, KmerSize, 1, IterationNo);
-				}
-				else if (Accepted1==1 ){//&& NWAccepted==0){
-					FP1++;		
-				}
-
-				time1 = time1 + (end1 - begin1);
-			}
-
-			time_spent1 = (double)time1 / CLOCKS_PER_SEC;
-
-			//printf("Fastest implementation of Myers’s bit-vector algorithm (Edlib 2017):\n");
-			//printf("CPU Time(seconds): %5.4f,    Accepted Mapping: %d,    Rejected Mapping: %d\n", time_spent8, FP8,FN8);
-			//printf("----------------------------------------------------------------- \n");
-			//printf("Filter Name \t    CPU Time(seconds) \t\t FPs# \t FNs# \n");
-			printf(" %d \t\t %5.4f \t %10d \t %d\n", EditThreshold, time_spent1, FP1,FN1);
-
-
-			fclose(fp);
-		}
+	//printf("Edit Distance \t CPU Time(seconds) \t Alignment_Needed \t Not_Needed \n");
+	
+	int threads = atoi(argv[7]);
+	
+	printf("This system has %d processors configured and %d processors available.\n", get_nprocs_conf(), get_nprocs());
+	
+	fp = fopen(argv[5], "r");
+	if (!fp){
+		fprintf(stderr, "Sorry, the file does not exist or you do not have access permission\n");
 	}
+	else {
+		
+        if (threads==1) {
+            int ReadLength = atoi(argv[3]);
+            int DebugMode = atoi(argv[1]);
+            int KmerSize = atoi(argv[2]);
+            int IterationNo = atoi(argv[4]);
+            int EditThreshold = atoi(argv[8]);
+            int Accepted =0;
+            char RefSeq[ReadLength];
+            char ReadSeq[ReadLength];
+
+            int n=0;
+            int banded=1;
+
+            //printf("%s\n",step->lines[i]);
+            for (i = 0; i < atoi(argv[6]); i++) {
+                read = getline(&line, &len, fp);
+                char *s = strdup(line);
+                strncpy(ReadSeq, s, ReadLength);
+                strncpy(RefSeq, s+ReadLength+1, ReadLength);
+
+                /*for (n = 0; n < ReadLength; n++) {
+                printf("%c",ReadSeq[n]);
+                }
+                printf("\t");
+                for (n = 0; n < ReadLength; n++) {
+                printf("%c",RefSeq[n]);
+                }
+                printf("\n");
+                */
+
+				if (SneakySnake(ReadLength, RefSeq, ReadSeq, EditThreshold, KmerSize, DebugMode, IterationNo))
+					Accepted++;
+				//printf("i: %d TID:%d Accepted: %d\n",i, tid, step->Accepted[i]);
+                    
+            }
+             printf("Data: %s\tThreads: %d\tE: %d\tAccepted: %d\tRejected:%d\n", argv[5], threads, EditThreshold, Accepted, atoi(argv[6])-Accepted);
+        } else { //when threads >1
+            step_t *s;
+            s = calloc(1, sizeof(step_t));
+            s->lines = calloc(atoi(argv[6]), sizeof(char*));
+            s->Accepted = calloc(atoi(argv[6]), sizeof(int));
+            s->DebugMode = atoi(argv[1]);
+            s->KmerSize = atoi(argv[2]);
+            s->ReadLength  = atoi(argv[3]);
+            s->IterationNo  = atoi(argv[4]);
+            s->EditThreshold = atoi(argv[8]);
+
+            for (i = 0; i < atoi(argv[6]); i++) {
+                read = getline(&line, &len, fp);
+                //printf("%s",line);
+                s->lines[s->n_lines] = strdup(line);
+                s->Accepted[s->n_lines] = 0;
+                //free(s->lines[s->n_lines]);
+                ++s->n_lines;	
+            }
+
+            gettimeofday(&timecheck, NULL);
+            start = (long)timecheck.tv_sec * 1000 + (long)timecheck.tv_usec / 1000;
+
+            for (loopPar =10; loopPar<=10;loopPar++) {
+                //s->EditThreshold =(loopPar * s->ReadLength)/100;
+                kt_for(threads, worker_for, s, atoi(argv[6]));
+                Accepted=0;
+                for (i = 0; i < atoi(argv[6]); i++) {
+                    //printf("%s\n",s->lines[i]);
+                    if (s->Accepted[i])
+                        Accepted++;
+                    ++s->n_lines;
+                } 
+                printf("Data: %s\tThreads: %d\tE: %d\tAccepted: %d\tRejected:%d", argv[5], threads, s->EditThreshold, Accepted, atoi(argv[6])-Accepted);
+            }
+            gettimeofday(&timecheck, NULL);
+            end = (long)timecheck.tv_sec * 1000 + (long)timecheck.tv_usec / 1000;
+
+            printf("\tTime: %ld milliseconds\n", (end - start));
+
+            for (i = 0; i < atoi(argv[6]); i++) {
+                free(s->lines[i]);
+                ++s->n_lines;
+            } 
+            free(s->lines); free(s->Accepted); free(s);
+        }
+	}
+
+	fclose(fp);
 	return 0;
 }
