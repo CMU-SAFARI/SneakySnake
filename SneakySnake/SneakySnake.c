@@ -43,11 +43,14 @@
 /* Function Definitions */
 
 /*
- * Arguments    : const char RefSeq[ReadLength]
+ * Arguments    : int ReadLength
+ *                const char RefSeq[ReadLength]
  *                const char ReadSeq[ReadLength]
  *                int EditThreshold
- *                int GridSize
- * Return Type  : int
+ *                int KmerSize (t)
+ *                int DebugMode
+ *				  int IterationNo (y)
+ * Return Type  : int Accepted
  */
 int SneakySnake(int ReadLength, char * RefSeq, char * ReadSeq, int EditThreshold, int KmerSize, int DebugMode, int IterationNo)
 {
