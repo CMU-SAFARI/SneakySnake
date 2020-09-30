@@ -38,6 +38,8 @@ Above, we only provide the first 30,000 read-reference pairs of each dataset we 
 We use [https://github.com/pfaucon/PBSIM-PacBio-Simulator][PBSIM] to simulate long sequence pairs. This simulator already provides read-ref pairs; a simulated read along with its original segment on the reference genome. We use the [https://www.ncbi.nlm.nih.gov/nuccore/NC_000001.1][first chromosome of Human genome] as PBSIM's reference gneome. We use the following command lines to generate the two datasets using the default error count and distribution.
 
 ```
+/PBSIM-PacBio-Simulator/src/pbsim --data-type CLR --depth 30 --prefix LongSequences_10K_PBSIM --length-max 10000 --length-min 10000 --model_qc /PBSIM-PacBio-Simulator/data/model_qc_clr --length-mean 10000 NC_000001_11_Chromosome1.fasta
+
 /PBSIM-PacBio-Simulator/src/pbsim --data-type CLR --depth 30 --prefix LongSequences_100K_PBSIM --length-max 100000 --length-min 100000 --model_qc /PBSIM-PacBio-Simulator/data/model_qc_clr --length-mean 100000 NC_000001_11_Chromosome1.fasta
 ```
 
