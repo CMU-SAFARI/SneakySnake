@@ -1,14 +1,19 @@
 ## Instructions:
 
-```
-make
-./main 0 100 100 100 ../Datasets/ERR240727_1_E2_30000Pairs.txt 30000 
-./main [DebugMode] [KmerSize] [ReadLength] [IterationNo] [ReadRefFile] [# of reads]
+```sh
+git clone https://github.com/CMU-SAFARI/SneakySnake
+cd SneakySnake && make
+
+./main [DebugMode] [KmerSize] [ReadLength] [IterationNo] [ReadRefFile] [# of reads] [# of threads] [EditThreshold]
+# Short sequences
+./main 0 100 100 100 ../Datasets/ERR240727_1_E2_30000Pairs.txt 30000 10 10
+# Long sequences
+./main 0 20500 100000 20500 ../Datasets/LongSequences_100K_PBSIM_10Pairs.txt 10 40 20000
 ```
 
 ## Output [DebugMode OFF]:
-```
-./main 0 100 100 100 ../Datasets/ERR240727_1_E2_30000Pairs.txt 30000 
+```sh
+./main 0 100 100 100 ../Datasets/ERR240727_1_E2_30000Pairs.txt 30000 1 10
 Edit Distance 	 CPU Time(seconds) 	 Alignment_Needed 	 Not_Needed 
 Threshold 
  0 		 0.0238 	         11 	 29989
@@ -26,7 +31,7 @@ Threshold
 
 ## Output [DebugMode ON]:
 ```
-./main 1 100 100 100 ../Datasets/ERR240727_1_E2_30000Pairs.txt 30000 
+./main 1 100 100 100 ../Datasets/ERR240727_1_E2_30000Pairs.txt 30000 1 10
 
  0 - _ 0       _10       _20       _30       _40       _50       _60       _70       _80       _90       
  0 - 1100000101000000000000000100000000001010000000001000010010000000000000000000000000000010100000000001
