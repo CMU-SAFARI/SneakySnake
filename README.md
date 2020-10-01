@@ -49,7 +49,7 @@ SneakySnake-master
 ├───5. SneakySnake
 ├───6. Evaluation Results
 ```            
-1. In the "Datasets" directory, you will find four sample datasets that you can start with. You will also find details on how to obtain the datasets that we used in our evaluation, so that you can reproduce the exact same experimental results.
+1. In the "Datasets" directory, you will find six sample datasets that you can start with. You will also find details on how to obtain the datasets that we used in our evaluation, so that you can reproduce the exact same experimental results.
 2. In the "Snake-on-Chip" directory, you will find the verilog design files and the host application that are needed to run SneakySnake on an FPGA board. You will find the details on how to synthesize the design and program the FPGA chip in README.md.
 3. In the "Hardware_Accelerator" directory, you will find the Vivado project that is needed for the Snake-on-Chip.
 4. In the "Snake-on-GPU" directory, you will find the source code of the GPU implementation of SneakySnake. Follow the instructions provided in the README.md inside the directory to compile and execute the program. We also provide an example of how the output of Snake-on-GPU looks like.
