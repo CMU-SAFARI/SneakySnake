@@ -60,7 +60,7 @@ SneakySnake-master
 If you have any suggestion for improvement, please contact mohammed dot alser at inf dot ethz dot ch
 If you encounter bugs or have further questions or requests, you can raise an issue at the [issue page][issue].
 
-### <a name="cite"></a>Citing SneakySnake
+## <a name="cite"></a>Citing SneakySnake
 
 If you use SneakySnake in your work, please cite:
 
