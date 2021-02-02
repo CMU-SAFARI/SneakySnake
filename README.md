@@ -3,7 +3,7 @@ The first and the only pre-alignment filtering algorithm that works efficiently 
 
 ***:bulb:SneakySnake now supports multithreading and pre-alignment filtering for both short (Illumina) and long (ONT and PacBio) reads***
 
-***:bulb:Watch our lecture about SneakySnake!***
+***:bulb:Watch our [lecture about SneakySnake](https://www.youtube.com/watch?v=ygmQpdDTL7o&t=8625s)!*** 
 
 <p align="center">
     <a href="https://www.youtube.com/watch?v=ygmQpdDTL7o&t=8625s" target="_blank"><img src="http://img.youtube.com/vi/ygmQpdDTL7o/0.jpg" 
