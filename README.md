@@ -5,8 +5,11 @@ The first and the only pre-alignment filtering algorithm that works efficiently 
 
 ***:bulb:Watch our lecture about SneakySnake!***
 
-<a href="https://www.youtube.com/watch?v=ygmQpdDTL7o&t=8625s" target="_blank"><img src="http://img.youtube.com/vi/ygmQpdDTL7o/0.jpg" 
+<p align="center">
+    <a href="https://www.youtube.com/watch?v=ygmQpdDTL7o&t=8625s" target="_blank"><img src="http://img.youtube.com/vi/ygmQpdDTL7o/0.jpg" 
 alt="Watch our explanation of SneakySnake" width="440" border="10" /></a>
+</p>
+
 
 
 ## <a name="started"></a>Getting Started
