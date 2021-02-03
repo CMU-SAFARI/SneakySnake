@@ -81,6 +81,23 @@ If you use SneakySnake in your work, please cite:
 > "SneakySnake: A Fast and Accurate Universal Genome Pre-Alignment Filter for CPUs, GPUs, and FPGAs." 
 > arXiv preprint **arXiv**:1910.09020 (2019). [link](https://arxiv.org/abs/1910.09020)
 
+Below is bibtex format for citation.
+
+```bibtex
+@article{10.1093/bioinformatics/btaa1015,
+    author = {Alser, Mohammed and Shahroodi, Taha and Gómez-Luna, Juan and Alkan, Can and Mutlu, Onur},
+    title = "{SneakySnake: a fast and accurate universal genome pre-alignment filter for CPUs, GPUs and FPGAs}",
+    journal = {Bioinformatics},
+    year = {2020},
+    month = {12},
+    abstract = "{We introduce SneakySnake, a highly parallel and highly accurate pre-alignment filter that remarkably reduces the need for computationally costly sequence alignment. The key idea of SneakySnake is to reduce the approximate string matching (ASM) problem to the single net routing (SNR) problem in VLSI chip layout. In the SNR problem, we are interested in finding the optimal path that connects two terminals with the least routing cost on a special grid layout that contains obstacles. The SneakySnake algorithm quickly solves the SNR problem and uses the found optimal path to decide whether or not performing sequence alignment is necessary. Reducing the ASM problem into SNR also makes SneakySnake efficient to implement on CPUs, GPUs and FPGAs.SneakySnake significantly improves the accuracy of pre-alignment filtering by up to four orders of magnitude compared to the state-of-the-art pre-alignment filters, Shouji, GateKeeper and SHD. For short sequences, SneakySnake accelerates Edlib (state-of-the-art implementation of Myers’s bit-vector algorithm) and Parasail (state-of-the-art sequence aligner with a configurable scoring function), by up to 37.7× and 43.9× (\\&gt;12× on average), respectively, with its CPU implementation, and by up to 413× and 689× (\\&gt;400× on average), respectively, with FPGA and GPU acceleration. For long sequences, the CPU implementation of SneakySnake accelerates Parasail and KSW2 (sequence aligner of minimap2) by up to 979× (276.9× on average) and 91.7× (31.7× on average), respectively. As SneakySnake does not replace sequence alignment, users can still obtain all capabilities (e.g. configurable scoring functions) of the aligner of their choice, unlike existing acceleration efforts that sacrifice some aligner capabilities.https://github.com/CMU-SAFARI/SneakySnake.Supplementary data are available at Bioinformatics online.}",
+    issn = {1367-4803},
+    doi = {10.1093/bioinformatics/btaa1015},
+    url = {https://doi.org/10.1093/bioinformatics/btaa1015},
+    note = {btaa1015},
+    eprint = {https://academic.oup.com/bioinformatics/advance-article-pdf/doi/10.1093/bioinformatics/btaa1015/35152174/btaa1015.pdf},
+}
+```
 ## <a name="limit"></a>Limitations
 
 * SneakySnake may calculate an approximated edit distance value that is very close to the actual edit distance. However, it does not over-estimate the edit distance value (i.e., its calculated edit distance is always slightly less than or equal the actual edit distance).
