@@ -1,3 +1,6 @@
+## :bangbang: You can download the full datasets from here: https://zenodo.org/record/4537807 
+
+
 We provide two types of datasets: 1) short sequence pairs (100bp and 250bp long) & 2) long sequence pairs (10Kbp and 100Kbp long).
 
 ## Short sequence pairs (100bp and 250bp long)
