@@ -37,9 +37,9 @@ endif
 endif
 
 # This is solution specific. Check if we can replace this by generics too.
-SOLUTION_NAME ?= hbm_memcopy
-SOLUTION_DIR ?= hlsHBMMemcopy
-srcs += hw_action_hbm_memcopy_1024.cpp 
+SOLUTION_NAME ?= hbm_sneaky
+SOLUTION_DIR ?= hlsHBMSneaky
+srcs += hw_action_hbm.cpp 
 srcs += fetch_mem.cpp 
 srcs += pipeline.cpp 
 

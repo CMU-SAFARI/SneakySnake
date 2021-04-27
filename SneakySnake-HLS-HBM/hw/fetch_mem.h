@@ -5,7 +5,7 @@
 #include <ap_int.h>
 #include "hls_snap_1024.H"
 #include <action_memcopy.h> /* Memcopy Job definition */
-#include "hw_action_hbm_memcopy_1024.H"
+#include "hw_action_hbm.H"
 
 
 void read_ocapi_to_stream (hls::stream<snap_membus_512_t>& wide_stream,

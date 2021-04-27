@@ -18,7 +18,7 @@
 
 
 #include "ap_int.h"
-#include "hw_action_hbm_memcopy_1024.H"
+#include "hw_action_hbm.H"
 #include "fetch_mem.h"
 #include "pipeline.h"
 

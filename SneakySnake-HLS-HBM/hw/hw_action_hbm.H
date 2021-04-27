@@ -1,5 +1,5 @@
-#ifndef __ACTION_HLS_HBM_MEMCOPY_H__
-#define __ACTION_HLS_HBM_MEMCOPY_H__
+#ifndef HW_ACTION_HBM_H
+#define HW_ACTION_HBM_H
 
 /*
  * Copyright 2017 International Business Machines
