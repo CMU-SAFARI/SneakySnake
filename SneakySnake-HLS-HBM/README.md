@@ -28,4 +28,4 @@ The code has been tested with Xilinx Vivado 2019.2 up to 2020.1
 Access to CAPI from the FPGA card requires the Power Service Layer (PSL).
 
 * Build process
-The HLS_HBM_SNEAKY example can be directly cloned into OC-ACCEL's example directory. Building the code and running the make environment requires the usual development tools gcc, make, sed, awk. 
+The HLS_HBM_SNEAKY example can be directly cloned into OC-ACCEL's example directory. Building the code and running the make environment requires the usual development tools gcc, make, sed, awk.  
