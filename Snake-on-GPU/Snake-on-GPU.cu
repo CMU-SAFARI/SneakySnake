@@ -560,7 +560,7 @@ int main(int argc, const char * const argv[])
 	int Number_of_warps_inside_each_block = 32; //assuming that the block size is 1024 we have 32 warp inside each block! (Now is 1 for testing)
 	//int Number_of_blocks_inside_each_kernel = 512;
 	int Concurrent_threads_In_Block = warp_size * Number_of_warps_inside_each_block;
-	int Number_of_blocks_inside_each_kernel = ceil(NumReads / Concurrent_threads_In_Block);
+	int Number_of_blocks_inside_each_kernel = ceil(((double) NumReads) / ((double) Concurrent_threads_In_Block));
 
 	//int Concurrent_threads_In_Block = Number_of_Reads_inside_each_cacheline * Number_of_warps_inside_each_block;
 	int F_ErrorThreshold =0;
