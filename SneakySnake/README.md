@@ -4,7 +4,7 @@
 git clone https://github.com/CMU-SAFARI/SneakySnake
 cd SneakySnake/SneakySnake && make
 
-./main [DebugMode] [KmerSize] [ReadLength] [IterationNo] [ReadRefFile] [# of reads] [# of threads] [EditThreshold]
+#./main [DebugMode] [KmerSize] [ReadLength] [IterationNo] [ReadRefFile] [# of reads] [# of threads] [EditThreshold]
 # Short sequences
 ./main 0 100 100 100 ../Datasets/ERR240727_1_E2_30000Pairs.txt 30000 10 10
 # Long sequences
