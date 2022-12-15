@@ -2,7 +2,7 @@
 
 ```sh
 git clone https://github.com/CMU-SAFARI/SneakySnake
-cd SneakySnake && make
+cd SneakySnake/SneakySnake && make
 
 ./main [DebugMode] [KmerSize] [ReadLength] [IterationNo] [ReadRefFile] [# of reads] [# of threads] [EditThreshold]
 # Short sequences
