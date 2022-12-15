@@ -55,15 +55,17 @@ SneakySnake-master
 └───2. Snake-on-Chip
     └───3. Hardware_Accelerator
 ├───4. Snake-on-GPU
-├───5. SneakySnake
-├───6. Evaluation Results
+├───5. SneakySnake-HLS-HBM
+├───6. SneakySnake
+├───7. Evaluation Results
 ```            
 1. In the "Datasets" directory, you will find six sample datasets that you can start with. You will also find details on how to obtain the datasets that we used in our evaluation, so that you can reproduce the exact same experimental results.
 2. In the "Snake-on-Chip" directory, you will find the verilog design files and the host application that are needed to run SneakySnake on an FPGA board. You will find the details on how to synthesize the design and program the FPGA chip in README.md.
 3. In the "Hardware_Accelerator" directory, you will find the Vivado project that is needed for the Snake-on-Chip.
 4. In the "Snake-on-GPU" directory, you will find the source code of the GPU implementation of SneakySnake. Follow the instructions provided in the README.md inside the directory to compile and execute the program. We also provide an example of how the output of Snake-on-GPU looks like.
-5. In the "SneakySnake" directory, you will find the source code of the CPU implementation of the SneakySnake algorithm. Follow the instructions provided in the README.md inside the directory to compile and execute the program. We also provide an example of how the output of SneakySnake looks like using both verbose mode and silent mode.
-6. In the "Evaluation Results" directory, you will find the exact value of all evaluation results presented in the paper and many more. 
+5. In the "SneakySnake-HLS-HBM" directory, you will find the source code of the FPGA-HBM implementation of the SneakySnake algorithm (https://arxiv.org/abs/2106.06433). Follow the instructions provided in the README.md inside the directory to compile and execute the program.
+6. In the "SneakySnake" directory, you will find the source code of the CPU implementation of the SneakySnake algorithm. Follow the instructions provided in the README.md inside the directory to compile and execute the program. We also provide an example of how the output of SneakySnake looks like using both verbose mode and silent mode.
+7. In the "Evaluation Results" directory, you will find the exact value of all evaluation results presented in the paper and many more. 
 
 ##  <a name="contact"></a>Getting Help
 If you have any suggestion for improvement, please contact mohammed dot alser at inf dot ethz dot ch
@@ -75,11 +77,12 @@ If you use SneakySnake in your work, please cite:
 
 > Mohammed Alser, Taha Shahroodi, Juan Gomez-Luna, Can Alkan, and Onur Mutlu. 
 > "SneakySnake: A Fast and Accurate Universal Genome Pre-Alignment Filter for CPUs, GPUs, and FPGAs." 
-> Bioinformatics (2020). [link](https://doi.org/10.1093/bioinformatics/btaa1015)
+> Bioinformatics (2020). [link](https://doi.org/10.1093/bioinformatics/btaa1015), [link](https://arxiv.org/abs/1910.09020)
 
-> Mohammed Alser, Taha Shahroodi, Juan Gomez-Luna, Can Alkan, and Onur Mutlu. 
-> "SneakySnake: A Fast and Accurate Universal Genome Pre-Alignment Filter for CPUs, GPUs, and FPGAs." 
-> arXiv preprint **arXiv**:1910.09020 (2019). [link](https://arxiv.org/abs/1910.09020)
+> Gagandeep Singh, Mohammed Alser, Damla Senol Cali, Dionysios Diamantopoulos, Juan Gómez-Luna, Henk Corporaal, Onur Mutlu. 
+> "FPGA-Based Near-Memory Acceleration of Modern Data-Intensive Applications." 
+> IEEE Micro (2021). [link](https://ieeexplore.ieee.org/abstract/document/9451578), [link](https://arxiv.org/abs/2106.06433)
+
 
 Below is bibtex format for citation.
 
