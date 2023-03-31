@@ -10,7 +10,7 @@ The first and the only pre-alignment filtering algorithm that works efficiently 
 alt="Watch our explanation of SneakySnake" width="440" border="10" /></a>
 </p>
 <p align="center">
-    <a href="https://www.youtube.com/watch?v=8F5MfqOXdTw" target="_blank"><img src="https://raw.githubusercontent.com/CMU-SAFARI/SneakySnake/master/Evaluation%20Results/SneakySnake-Walkthrough.png" 
+    <a href="https://www.youtube.com/watch?v=8F5MfqOXdTw&t=28s" target="_blank"><img src="https://raw.githubusercontent.com/CMU-SAFARI/SneakySnake/master/Evaluation%20Results/SneakySnake-Walkthrough.png" 
 alt="Watch our explanation of SneakySnake" width="440" border="10" /></a>
 </p>
 
